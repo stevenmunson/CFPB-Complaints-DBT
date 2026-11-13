@@ -7,8 +7,8 @@ with complaints as (
 select
     -- keys
     complaint_id,
-    product || ' | ' || coalesce(sub_product, '(none)')   as product_key,
-    issue || ' | ' || coalesce(sub_issue, '(none)')       as issue_key,
+    {{ make_key('product', 'sub_product') }} as product_key,
+    {{ make_key('issue', 'sub_issue') }} as issue_key,
     company_name,
     state_code,
     submitted_via,
