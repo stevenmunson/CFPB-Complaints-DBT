@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: cfpb
+    meta:
+      external_location: "read_csv('C:/dbt/cfpb_data/*.csv', union_by_name = true, all_varchar = true)"
+    tables:
+      - name: raw_complaints

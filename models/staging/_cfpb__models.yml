@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stg_cfpb__complaints
+    description: One row per CFPB complaint, with clean column names and types. Duplicate Complaint IDs are removed.
+    columns:
+      - name: complaint_id
+        description: The CFPB's ID for the complaint. The primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: date_received
+        description: The date the CFPB received the complaint.
+        data_tests:
+          - not_null
+      - name: company_name
+        description: Company name, trimmed and upper-cased so each company appears once.
+        data_tests:
+          - not_null
+      - name: product
+        description: The CFPB product category.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Credit card
+                  - Checking or savings account
+                  - Debt collection
+                  - Money transfer, virtual currency, or money service
+                  - Credit card or prepaid card

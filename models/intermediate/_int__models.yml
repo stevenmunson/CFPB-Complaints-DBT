@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: int_complaints__products_remapped
+    description: Complaints with the retired "Credit card or prepaid card" product split into Credit card and Prepaid card. Prepaid cards are removed because they are outside this project's four products.
+    columns:
+      - name: complaint_id
+        data_tests:
+          - unique
+          - not_null
+      - name: product
+        description: Product name, using current CFPB names for every year.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - Credit card
+                  - Checking or savings account
+                  - Debt collection
+                  - Money transfer, virtual currency, or money service

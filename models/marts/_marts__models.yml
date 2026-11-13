@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: fct_complaints
+    description: One row per complaint, for the four products in this project. The fact table of the star schema.
+    columns:
+      - name: complaint_id
+        data_tests:
+          - unique
+          - not_null
+      - name: product_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: product_key
+      - name: issue_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_issue')
+                field: issue_key
+      - name: company_name
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_company')
+                field: company_name
+      - name: state_code
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_state')
+                field: state_code
+
+  - name: dim_product
+    description: One row per product and sub-product.
+    columns:
+      - name: product_key
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_issue
+    description: One row per issue and sub-issue.
+    columns:
+      - name: issue_key
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_company
+    description: One row per company.
+    columns:
+      - name: company_name
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_state
+    description: One row per state code found in the complaints, with population for the 50 states, D.C., and Puerto Rico.
+    columns:
+      - name: state_code
+        data_tests:
+          - unique
+          - not_null

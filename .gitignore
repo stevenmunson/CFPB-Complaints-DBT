@@ -1,0 +1,8 @@
+
+target/
+dbt_packages/
+logs/
+.env
+# the database files dbt builds; dbt build recreates them, so they stay out of Git
+*.duckdb
+*.duckdb.wal

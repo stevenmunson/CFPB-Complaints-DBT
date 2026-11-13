@@ -1,0 +1,17 @@
+version: 2
+
+seeds:
+  - name: product_mapping
+    description: Maps the retired "Credit card or prepaid card" product (used until August 2023) to the current product names, by sub-product.
+    columns:
+      - name: old_sub_product
+        data_tests:
+          - unique
+          - not_null
+  - name: state_population
+    description: U.S. Census Bureau state population estimates (Vintage 2025), for complaints per 100K residents.
+    columns:
+      - name: state_code
+        data_tests:
+          - unique
+          - not_null
