@@ -26,3 +26,4 @@ Every `dbt build` tests the models as it builds them. The tests cover unique and
 1. Install Python, then run `pip install dbt-duckdb`.
 2. Download complaints as CSV files from the CFPB complaint database (https://www.consumerfinance.gov/data-research/consumer-complaints/) into `C:/dbt/cfpb_data`, or change the path in `models/staging/_sources.yml`.
 3. Run `dbt deps`, then `dbt build`.
+4. Run `dbt run-operation export_marts --target prod` to write the marts as Parquet files for Power BI.
