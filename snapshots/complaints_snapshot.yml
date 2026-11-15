@@ -1,0 +1,10 @@
+snapshots:
+  - name: complaints_snapshot
+    relation: ref('stg_cfpb__complaints')
+    description: History of each complaint's company response. A new row is added every time the response changes.
+    config:
+      unique_key: complaint_id
+      strategy: check
+      check_cols:
+        - company_response
+        - company_public_response
