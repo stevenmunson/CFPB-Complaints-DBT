@@ -16,7 +16,7 @@ select
     -- dates
     date_received,
     date_sent_to_company,
-    date_sent_to_company - date_received                  as days_to_send_to_company,
+    date_sent_to_company - date_received     as days_to_send_to_company,
 
     -- outcome
     company_response,
@@ -24,6 +24,6 @@ select
     company_response in (
         'Closed with monetary relief',
         'Closed with non-monetary relief'
-    )                                                     as is_relief
+    )                                        as is_relief
 
 from complaints

@@ -1,0 +1,19 @@
+[sqlfluff]
+dialect = duckdb
+templater = dbt
+max_line_length = 100
+# Skip rules about capital letters, quotes, and aliases, so the
+# formatter only changes spacing and layout, not your words.
+exclude_rules = capitalisation, aliasing, references, ambiguous, structure
+
+[sqlfluff:templater:dbt]
+project_dir = .
+
+[sqlfluff:indentation]
+tab_space_size = 4
+
+[sqlfluff:layout:type:alias_expression]
+# Line up the "as" in every select list.
+spacing_before = align
+align_within = select_clause
+align_scope = bracketed

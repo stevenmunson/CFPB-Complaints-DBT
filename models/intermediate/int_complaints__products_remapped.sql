@@ -26,8 +26,9 @@ remapped as (
         end as product
     from complaints
     left join product_mapping
-        on complaints.product = product_mapping.old_product
-       and complaints.sub_product = product_mapping.old_sub_product
+        on
+            complaints.product = product_mapping.old_product
+            and complaints.sub_product = product_mapping.old_sub_product
 
 )
 
