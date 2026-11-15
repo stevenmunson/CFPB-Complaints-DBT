@@ -1,6 +1,24 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key='complaint_id',
+        on_schema_change='fail'
+    )
+}}
+
 with complaints as (
 
     select * from {{ ref('int_complaints__products_remapped') }}
+
+    {% if is_incremental() %}
+    -- On an incremental run, only look at complaints received in the 30 days
+    -- before the newest one already in this table. That picks up new
+    -- complaints plus recent ones whose company response may have changed.
+        where date_received >= (
+            select max(date_received) - interval 30 day
+            from {{ this }}
+        )
+    {% endif %}
 
 )
 
